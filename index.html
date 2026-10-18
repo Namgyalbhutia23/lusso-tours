@@ -1,0 +1,365 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#10251e">
+  <meta name="description" content="Discover beautiful destinations and unforgettable journeys with Lusso Tours.">
+  <title>Lusso Tours | Explore the Extraordinary</title>
+  <style>
+    :root {
+      --green: #10251e;
+      --gold: #d8b477;
+      --cream: #f8f6f0;
+      --muted: #65736a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--green);
+      background: var(--cream);
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+    .container { width: min(1120px, 90%); margin: auto; }
+
+    header {
+      background: var(--green);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .logo { font-family: Georgia, serif; font-size: 27px; font-weight: bold; }
+    .logo span { color: var(--gold); }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a:hover { color: var(--gold); }
+    .menu-btn {
+      display: none;
+      color: white;
+      background: transparent;
+      border: 1px solid #829087;
+      padding: 8px 12px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(9,27,22,.88), rgba(9,27,22,.25)),
+        url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=85")
+        center/cover;
+    }
+    .hero-content { max-width: 700px; padding: 90px 0; }
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(44px, 7vw, 78px);
+      line-height: 1.08;
+      margin: 22px 0;
+      font-weight: normal;
+    }
+    .hero p { font-size: 18px; max-width: 530px; color: #eee; }
+    .btn {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 14px 25px;
+      background: var(--gold);
+      color: var(--green);
+      font-weight: bold;
+      border: 1px solid var(--gold);
+      transition: .2s;
+    }
+    .btn:hover { background: white; border-color: white; }
+    .btn-outline { background: transparent; color: white; border-color: white; margin-left: 10px; }
+
+    section { padding: 85px 0; }
+    .section-head { text-align: center; max-width: 650px; margin: 0 auto 42px; }
+    .section-head h2 {
+      font: normal clamp(32px, 5vw, 46px) Georgia, serif;
+      margin: 12px 0;
+    }
+    .section-head p { color: var(--muted); }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .destination {
+      position: relative;
+      min-height: 360px;
+      overflow: hidden;
+      background: #d8ded7;
+      color: white;
+    }
+    .destination img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .5s;
+    }
+    .destination:hover img { transform: scale(1.06); }
+    .destination::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(transparent 30%, rgba(0,0,0,.78));
+    }
+    .destination-info { position: absolute; z-index: 1; bottom: 24px; left: 24px; right: 20px; }
+    .destination h3 { font: normal 30px Georgia, serif; }
+    .destination p { color: #eee; font-size: 14px; }
+
+    .about { background: white; }
+    .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 55px; align-items: center; }
+    .about-image { width: 100%; height: 440px; object-fit: cover; }
+    .about h2 { font: normal clamp(32px, 5vw, 46px) Georgia, serif; margin: 12px 0 20px; }
+    .about p { color: var(--muted); margin-bottom: 14px; }
+    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 25px; }
+    .feature { border-left: 3px solid var(--gold); padding-left: 13px; font-weight: bold; }
+
+    .packages { background: #eeece4; }
+    .package {
+      background: white;
+      padding-bottom: 25px;
+      box-shadow: 0 6px 25px #10251e0b;
+    }
+    .package img { width: 100%; height: 220px; object-fit: cover; }
+    .package-content { padding: 20px 22px 0; }
+    .package h3 { font: normal 25px Georgia, serif; margin: 7px 0; }
+    .package p { color: var(--muted); font-size: 14px; }
+    .package .btn { margin-top: 18px; padding: 11px 17px; }
+
+    .contact { background: var(--green); color: white; text-align: center; }
+    .contact h2 { font: normal clamp(34px, 5vw, 48px) Georgia, serif; margin: 12px 0; }
+    .contact p { color: #d5ded8; max-width: 570px; margin: auto; }
+    footer { background: #0a1914; color: #c4cec8; padding: 27px 0; text-align: center; font-size: 13px; }
+    footer span { color: var(--gold); }
+
+    @media (max-width: 760px) {
+      .menu-btn { display: block; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 78px; left: 0; right: 0;
+        background: var(--green);
+        padding: 22px 5%;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links.open { display: flex; }
+      .hero { min-height: 540px; }
+      .hero p { font-size: 16px; }
+      .grid { grid-template-columns: 1fr; }
+      .destination { min-height: 330px; }
+      .about-layout { grid-template-columns: 1fr; gap: 30px; }
+      .about-image { height: 310px; }
+      section { padding: 65px 0; }
+      .btn-outline { margin-left: 0; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="container">
+    <a href="#home" class="logo">LUSSO<span>.</span> TOURS</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#destinations">Destinations</a>
+      <a href="#about">About Us</a>
+      <a href="#packages">Tour Packages</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <div class="eyebrow">Your journey begins here</div>
+      <h1>Discover the world. Create your story.</h1>
+      <p>From breathtaking mountains to unforgettable escapes, let Lusso Tours turn your travel dreams into extraordinary memories.</p>
+      <a href="#destinations" class="btn">Explore Destinations ↗</a>
+      <a href="#contact" class="btn btn-outline">Plan Your Trip</a>
+    </div>
+  </section>
+
+  <section id="destinations">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Where will you go?</div>
+        <h2>Discover beautiful destinations</h2>
+        <p>Find inspiration for your next adventure, from peaceful mountain escapes to tropical coastlines.</p>
+      </div>
+      <div class="grid">
+        <article class="destination">
+          <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=800&q=80" alt="Beautiful Himalayan mountain landscape" loading="lazy">
+          <div class="destination-info">
+            <h3>The Himalayas</h3>
+            <p>Mountain views, peaceful valleys and fresh air.</p>
+          </div>
+        </article>
+        <article class="destination">
+          <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=800&q=80" alt="Tropical beach with clear blue water" loading="lazy">
+          <div class="destination-info">
+            <h3>Tropical Getaways</h3>
+            <p>Sunshine, crystal-clear waters and relaxation.</p>
+          </div>
+        </article>
+        <article class="destination">
+          <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?auto=format&fit=crop&w=800&q=80" alt="Colorful seaside village in Italy" loading="lazy">
+          <div class="destination-info">
+            <h3>European Escapes</h3>
+            <p>Charming towns, rich culture and new discoveries.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container about-layout">
+      <img class="about-image" src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1000&q=85" alt="Sunlight over a stunning natural landscape" loading="lazy">
+      <div>
+        <div class="eyebrow">The Lusso experience</div>
+        <h2>Travel more. Worry less.</h2>
+        <p>At Lusso Tours, we believe travel is about more than reaching a destination. It is about the people you meet, the sights you discover and the memories you bring home.</p>
+        <p>Whether you dream of a mountain adventure, a relaxing holiday or a journey somewhere new, we are here to help you plan your next getaway.</p>
+        <div class="features">
+          <div class="feature">Personalized Trips</div>
+          <div class="feature">Amazing Destinations</div>
+          <div class="feature">Friendly Support</div>
+          <div class="feature">Memorable Journeys</div>
+        </div>
+        <a href="#contact" class="btn">Let's Plan Your Trip</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="packages" id="packages">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">Find your adventure</div>
+        <h2>Explore our tour ideas</h2>
+        <p>Choose the kind of journey you love. Contact us to discuss your dates, itinerary and pricing.</p>
+      </div>
+      <div class="grid">
+        <article class="package">
+          <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Majestic mountain peaks" loading="lazy">
+          <div class="package-content">
+            <div class="eyebrow">Adventure</div>
+            <h3>Mountain Escape</h3>
+            <p>Explore mountain landscapes, scenic routes and refreshing nature retreats.</p>
+            <a href="#contact" class="btn package-link" data-trip="Mountain Escape">Enquire Now ↗</a>
+          </div>
+        </article>
+        <article class="package">
+          <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" alt="Peaceful lake surrounded by mountains" loading="lazy">
+          <div class="package-content">
+            <div class="eyebrow">Relaxation</div>
+            <h3>Nature Retreat</h3>
+            <p>Slow down, enjoy scenic surroundings and reconnect with nature.</p>
+            <a href="#contact" class="btn package-link" data-trip="Nature Retreat">Enquire Now ↗</a>
+          </div>
+        </article>
+        <article class="package">
+          <img src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=800&q=80" alt="Travel adventure overlooking a beautiful destination" loading="lazy">
+          <div class="package-content">
+            <div class="eyebrow">Discovery</div>
+            <h3>Explore Somewhere New</h3>
+            <p>Discover new places, local culture and experiences worth remembering.</p>
+            <a href="#contact" class="btn package-link" data-trip="Custom Holiday">Enquire Now ↗</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="eyebrow">Your next adventure awaits</div>
+      <h2>Let's plan something unforgettable.</h2>
+      <p>Tell us where you want to go, and let's start planning a journey that suits you.</p>
+      <a class="btn" id="whatsappBtn" href="https://wa.me/" target="_blank" rel="noopener noreferrer">Contact Us on WhatsApp ↗</a>
+      <p style="font-size:13px;margin-top:18px;">Personalized travel enquiries welcome.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <a href="#home" class="logo">LUSSO<span>.</span> TOURS</a>
+    <p style="margin-top:10px;">Discover beautiful destinations. Create unforgettable memories.</p>
+    <p style="margin-top:12px;">© <span id="year"></span> Lusso Tours. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  const menuBtn = document.getElementById("menuBtn");
+  const navLinks = document.getElementById("navLinks");
+
+  menuBtn.addEventListener("click", () => {
+    const isOpen = navLinks.classList.toggle("open");
+    menuBtn.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  navLinks.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("open");
+      menuBtn.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Replace this with your WhatsApp number, including country code.
+  // Example format: 919876543210 (digits only, no + or spaces).
+  const whatsappNumber = "91XXXXXXXXXX";
+
+  function setWhatsAppLink(message) {
+    const button = document.getElementById("whatsappBtn");
+    if (/^\d{10,15}$/.test(whatsappNumber)) {
+      button.href = "https://wa.me/" + whatsappNumber +
+        "?text=" + encodeURIComponent(message);
+    } else {
+      button.href = "https://wa.me/";
+    }
+  }
+
+  setWhatsAppLink("Hello Lusso Tours! I would like to plan a trip.");
+
+  document.querySelectorAll(".package-link").forEach(link => {
+    link.addEventListener("click", () => {
+      setWhatsAppLink(
+        "Hello Lusso Tours! I am interested in the " +
+        link.dataset.trip + " package. Please share more details."
+      );
+      document.getElementById("whatsappBtn").href =
+        /^\d{10,15}$/.test(whatsappNumber)
+          ? "https://wa.me/" + whatsappNumber +
+            "?text=" + encodeURIComponent(
+              "Hello Lusso Tours! I am interested in the " +
+              link.dataset.trip + " package. Please share more details."
+            )
+          : "https://wa.me/";
+    });
+  });
+</script>
+
+</body>
+</html>
